@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,14 +13,10 @@ class UserAuthController extends Controller
 {
     //
 
-    public function register(Request $request): \Illuminate\Http\JsonResponse
+    public function register(UserRequest $request): \Illuminate\Http\JsonResponse
     {
         //checking fields 
-        $registerData = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|min:8'
-        ]);
+        $registerData = $request->validated();
 
         //creating user
         $user = User::create([
@@ -36,10 +33,7 @@ class UserAuthController extends Controller
     public function login(Request $request): \Illuminate\Http\JsonResponse
     {
         //checking fields
-        $loginData = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|min:8'
-        ]);
+        $loginData = $request->validated();
 
         $user = User::where('email', $loginData['email'])->first();
         if (!$user || !Hash::check($loginData['password'], $user->password)) 
