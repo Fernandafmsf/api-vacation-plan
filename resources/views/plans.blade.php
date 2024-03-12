@@ -7,6 +7,11 @@
     <title>API Vacation Plan</title>
 </head>
 <body>
-    <h1>Vacation API </h1>
+    <h1>Vacation Plan API </h1>
+
+    <p>Title: {{$title}}</p>
+    <p>Description: {{$description}}</p>
+    <p>Date: {{$date}}</p>
+    <p>Location: {{$location}}</p>
 </body>
 </html>

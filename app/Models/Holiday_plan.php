@@ -14,6 +14,7 @@ class Holiday_plan extends Model
     protected $fillable = [
         'title',
         'description',
+        'date',
         'location'
     ];
 }

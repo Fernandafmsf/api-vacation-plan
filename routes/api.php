@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ApiHolidayController;
+use App\Http\Controllers\PDFController;
 use App\Models\Holiday_plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,6 @@ Route::post('plans', [ ApiHolidayController::class, "store"]);
 Route::get('plans/{id}', [ApiHolidayController::class, "show"]);
 Route::put('plans/{id}', [ApiHolidayController::class, "update"]);
 Route::delete('plans/{id}', [ApiHolidayController::class, "destroy"]);
+
+Route::get('generate/{id}', [PDFController::class, "generate"])->name('api.generate-pdf');
+
