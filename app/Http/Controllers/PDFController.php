@@ -18,7 +18,7 @@ class PDFController extends Controller
             ], 404); 
         }
 
-        $holiday_plan = Holiday_plan::find($id)->first();
+        $holiday_plan = Holiday_plan::where('id', $id)->first();
 
         $data = [
             'title' => $holiday_plan->title,
