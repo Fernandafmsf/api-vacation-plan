@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFormRequest;
 use App\Http\Requests\StoreHolidayPlanRequest;
+use App\Http\Requests\UpdateFormRequest;
 use App\Models\Holiday_plan;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class ApiHolidayController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(StoreFormRequest $request): \Illuminate\Http\JsonResponse
     {
         $holiday_plan = Holiday_plan::create($request->all());
 
@@ -56,7 +58,7 @@ class ApiHolidayController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function update(UpdateFormRequest $request, int $id): \Illuminate\Http\JsonResponse
     {
         if(!Holiday_plan::where('id', $id)->exists()){
             return response()->json([

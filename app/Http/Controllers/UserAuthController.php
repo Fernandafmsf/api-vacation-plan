@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +31,7 @@ class UserAuthController extends Controller
         ]);
     }
 
-    public function login(Request $request): \Illuminate\Http\JsonResponse
+    public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
         //checking fields
         $loginData = $request->validated();

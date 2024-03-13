@@ -24,12 +24,17 @@ use App\Models\User;
 |
 */
 
+Route::group([
+    'controller' => ApiHolidayController::class,
+    
+], function(){
+    Route::get('plans', 'index')->middleware('auth:sanctum');
+    Route::post('plans', 'store')->middleware('auth:sanctum');
+    Route::get('plans/{id}', 'show')->middleware('auth:sanctum');
+    Route::put('plans/{id}', 'update')->middleware('auth:sanctum');
+    Route::delete('plans/{id}', 'destroy')->middleware('auth:sanctum');
+});
 
-Route::get('plans', [ApiHolidayController::class, "index"])->middleware('auth:sanctum');
-Route::post('plans', [ ApiHolidayController::class, "store"])->middleware('auth:sanctum');
-Route::get('plans/{id}', [ApiHolidayController::class, "show"])->middleware('auth:sanctum');
-Route::put('plans/{id}', [ApiHolidayController::class, "update"])->middleware('auth:sanctum');
-Route::delete('plans/{id}', [ApiHolidayController::class, "destroy"])->middleware('auth:sanctum');
 
 Route::get('generate/{id}', [PDFController::class, "generate"])->name('api.generate-pdf')->middleware('auth:sanctum');
 
