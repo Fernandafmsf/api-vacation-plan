@@ -49,7 +49,7 @@ class ApiHolidayController extends Controller
         }else{
             return response()->json([
                 "message" => "Holiday plan not found"
-            ], 400);
+            ], 404);
         }
 
     }
